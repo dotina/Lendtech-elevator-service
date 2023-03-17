@@ -1,0 +1,36 @@
+########################################################
+# Application CONFIGURATIONS
+########################################################
+app-properties:
+  api-accepted-apps: esb
+  api-username: admin
+  api-password: admin
+
+
+########################################################
+# DATABASE CONFIGURATIONS
+########################################################
+spring:
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  h2:
+    console:
+      enabled: 'true'
+  r2dbc:
+    url: r2dbc:h2:mem:///elevator_db
+    username: admin
+    password: pass
+
+#database loggers:.
+logging:
+  level:
+    io:
+      r2dbc:
+        pool: TRACE
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: TRACE
