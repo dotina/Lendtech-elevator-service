@@ -13,12 +13,12 @@ public class TblElevator extends BaseModel implements Serializable {
     private boolean isMoving;
     private ElevatorDoorState elevatorDoorState;
 
-    private int maxFloor;
+    private long maxFloor;
 
     public TblElevator() {
     }
 
-    public TblElevator(int currentFloor, int destinationFloor, ElevatorDirection direction, boolean isMoving, ElevatorDoorState elevatorDoorState, int maxFloor) {
+    public TblElevator(int currentFloor, int destinationFloor, ElevatorDirection direction, boolean isMoving, ElevatorDoorState elevatorDoorState, long maxFloor) {
         this.currentFloor = currentFloor;
         this.destinationFloor = destinationFloor;
         this.direction = direction;
@@ -67,23 +67,11 @@ public class TblElevator extends BaseModel implements Serializable {
         this.elevatorDoorState = elevatorDoorState;
     }
 
-    public int getMaxFloor() {
+    public long getMaxFloor() {
         return maxFloor;
     }
 
-    public void setMaxFloor(int maxFloor) {
+    public void setMaxFloor(long maxFloor) {
         this.maxFloor = maxFloor;
-    }
-
-    @Override
-    public String toString() {
-        return "TblElevator{" +
-                "currentFloor=" + currentFloor +
-                ", destinationFloor=" + destinationFloor +
-                ", direction=" + direction +
-                ", isMoving=" + isMoving +
-                ", elevatorDoorState=" + elevatorDoorState +
-                ", maxFloor=" + maxFloor +
-                '}';
     }
 }

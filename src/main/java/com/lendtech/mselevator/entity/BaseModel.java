@@ -5,6 +5,7 @@ import org.springframework.data.relational.core.mapping.Column;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class BaseModel implements Serializable {
 
@@ -13,10 +14,10 @@ public class BaseModel implements Serializable {
     private Long id;
 
     @Column("created_at")
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     @Column("updated_at")
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 
     public Long getId() {
         return id;
@@ -26,19 +27,19 @@ public class BaseModel implements Serializable {
         this.id = id;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

@@ -2,6 +2,7 @@ package com.lendtech.mselevator.controller;
 
 import com.lendtech.mselevator.entity.TblElevator;
 import com.lendtech.mselevator.models.payloads.api.ApiResponse;
+import com.lendtech.mselevator.models.pojo.CallElevatorRequest;
 import com.lendtech.mselevator.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,8 +28,7 @@ public class ElevatorController {
     @PostMapping("/add_elevator")
     public Mono<ResponseEntity<ApiResponse>> serviceHandlerCreateElevator(
             @RequestHeader HttpHeaders httpHeaders,
-            @RequestBody TblElevator requestBody
-    ){
+            @RequestBody TblElevator requestBody){
         long startTime = System.currentTimeMillis();
         return apiService.processAddElevatorRequest(httpHeaders,requestBody, startTime);
     }
@@ -40,4 +40,21 @@ public class ElevatorController {
         long startTime = System.currentTimeMillis();
         return apiService.processStatusRequest(httpHeaders, elevatorId,startTime);
     }
+
+    @PostMapping("/call-elevator-floor")
+    public Mono<ResponseEntity<ApiResponse>> serviceHandlerCallElevator(
+            @RequestHeader HttpHeaders httpHeaders,
+            @RequestBody CallElevatorRequest requestBody){
+        long startTime = System.currentTimeMillis();
+        return apiService.processElevatorFloorRequest(httpHeaders,requestBody, startTime);
+    }
+
+    /** TODO : a service endpoint that calls a specific lift to open **/
+//    @PostMapping("/call-elevator-floor")
+//    public Mono<ResponseEntity<ApiResponse>> serviceHandlerCallElevatorFloor(
+//            @RequestHeader HttpHeaders httpHeaders,
+//            @RequestBody CallElevatorRequest requestBody){
+//        long startTime = System.currentTimeMillis();
+//        return apiService.processElevatorCallRequest(httpHeaders,requestBody, startTime);
+//    }
 }
