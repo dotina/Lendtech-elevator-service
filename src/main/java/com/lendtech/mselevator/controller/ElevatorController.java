@@ -4,6 +4,7 @@ import com.lendtech.mselevator.entity.TblElevator;
 import com.lendtech.mselevator.models.payloads.api.ApiResponse;
 import com.lendtech.mselevator.models.pojo.CallElevatorRequest;
 import com.lendtech.mselevator.service.ApiService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class ElevatorController {
     }
 
     @PostMapping("/add_elevator")
+    @Operation(
+            tags = {"Lendtech-elevator"}
+    )
     public Mono<ResponseEntity<ApiResponse>> serviceHandlerCreateElevator(
             @RequestHeader HttpHeaders httpHeaders,
             @RequestBody TblElevator requestBody){

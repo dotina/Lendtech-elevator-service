@@ -34,3 +34,12 @@ logging:
         type:
           descriptor:
             sql: TRACE
+
+########################################################
+# Documentation
+########################################################
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+    path: /swagger-doc/v3/api-docs

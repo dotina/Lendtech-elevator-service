@@ -114,6 +114,7 @@ public class ApiService {
                                 HttpStatus.OK));
                     }));
                 }
+
                 return Mono.just(new ResponseEntity<>(ApiResponse.responseFormatter(referenceId,
                         RESPONSE_CODE_200, RESPONSE_SUCCESS, RESPONSE_SUCCESSFUL, tblElevator),
                         HttpStatus.OK));
@@ -132,6 +133,16 @@ public class ApiService {
                     elevator.setElevatorDoorState(ElevatorDoorState.OPEN);
                     elevator.setUpdatedAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
                     return this.tblElevatorRepository.save(elevator).delayElement(Duration.ofSeconds(2)).then();
+                })
+        ).then(
+                Mono.defer(()->{
+                    elevator.setElevatorDoorState(ElevatorDoorState.CLOSING);
+                    elevator.setUpdatedAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
+                    return this.tblElevatorRepository.save(elevator).flatMap(tblElevator -> {
+                        elevator.setElevatorDoorState(ElevatorDoorState.CLOSED);
+                        elevator.setUpdatedAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
+                        return this.tblElevatorRepository.save(elevator).delayElement(Duration.ofSeconds(2));
+                    });
                 })
         ).then();
     }
